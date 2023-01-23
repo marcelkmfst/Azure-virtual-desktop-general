@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "westeurope"
+        },
+        "NamePrefix": {
+            "value": "avdo365"
+        },
+        "NumberOfVms": {
+            "value": 2
+        },
+        "ScriptUri": {
+            "value": "https://github.com/marcelkmfst/avd-0365/raw/main/office365-install.ps1"
+        },
+        "VirtualMachineIndex": {
+            "value": 0
+        }
+    }
+}
+

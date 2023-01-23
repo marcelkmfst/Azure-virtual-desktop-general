@@ -1,0 +1,3 @@
+
+git push 
+git config --global http.version HTTP/2

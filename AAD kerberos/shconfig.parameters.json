@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "westeurope"
+        },
+        "NamePrefix": {
+            "value": "AVDVMW11MS"
+        },
+        "NumberOfVms": {
+            "value": 2
+        },
+        "ScriptUri": {
+            "value": "https://raw.githubusercontent.com/marcelkmfst/avd-0365/main/AAD%20kerberos/registrykeys.ps1"
+        },
+        "VirtualMachineIndex": {
+            "value": 0
+        }
+    }
+}
+
