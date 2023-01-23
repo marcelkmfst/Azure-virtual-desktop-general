@@ -21,10 +21,19 @@ resource "azurerm_virtual_desktop_host_pool" "hostpool" {
   friendly_name         = var.hostpool
   validate_environment  = false
   custom_rdp_properties = "audiocapturemode:i:1;audiomode:i:0;"
+  start_vm_on_connect   =  true 
   description           = "${var.prefix} Terraform HostPool"
   type                  = "Personal"
+  personal_desktop_assignment_type = Automatic 
   # not needed - personal maximum_sessions_allowed = 16
   # not needed personal load_balancer_type       = "DepthFirst" #[BreadthFirst DepthFirst]
+   scheduled_agent_updates {
+    enabled = true
+    schedule {
+      day_of_week = "Saturday"
+      hour_of_day = 2
+    }
+   }
 }
 
 resource "azurerm_virtual_desktop_host_pool_registration_info" "registrationinfo" {
