@@ -1,2 +1,0 @@
-https://buildvirtual.net/how-to-deploy-wvd-session-hosts-using-terraform/
-

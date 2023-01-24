@@ -3,11 +3,17 @@ variable "resource_group_location" {
   description = "Location of the resource group."
 }
 
-variable "rg" {
-  type        = string
-  default     = "rg-avd-compute"
-  description = "Name of the Resource group in which to deploy session host"
+variable "deploy_location" {
+  default   = "westeurope"
+  description = "region where the resources are deployed"
+  
 }
+
+variable "resource_group_name" {
+  default     = "kpmg-avd-pxcube-by-tf"
+  description = "name of the resourcegroup"
+}
+
 
 variable "rdsh_count" {
   description = "Number of AVD machines to deploy"
@@ -61,87 +67,55 @@ variable "local_admin_password" {
   sensitive   = true
 }
 
+
 ###################### NETWORKING #############################
 
-variable "resource_group_location" {
-  default     = "eastus"
-  description = "Location of the resource group."
-}
-
-variable "rg_name" {
-  type        = string
-  default     = "rg-avd-resources"
-  description = "Name of the Resource group in which to deploy service objects"
-}
-
-variable "rg_shared_name" {
-  type        = string
-  default     = "rg-shared-resources"
-  description = "Name of the Resource group in which to deploy shared resources"
-}
-
-variable "deploy_location" {
-  type        = string
-  default     = "eastus"
-  description = "The Azure Region in which all resources in this example should be created."
-}
-
-variable "ad_vnet" {
-  type        = string
-  default     = "infra-network"
-  description = "Name of domain controller vnet"
-}
 
 variable "dns_servers" {
   type        = list(string)
-  default     = ["10.0.1.4", "168.63.129.16"]
-  description = "Custom DNS configuration"
+  default     = ["10.0.100.4", "10.0.100.5"]
+  description = "Custom DNS configuration, AADDS"
+}
+
+variable "vnet_name" {
+  type = string
+  default = "vnet-pxcube"
+  description = "Name of the pxcube vnet"
 }
 
 variable "vnet_range" {
   type        = list(string)
-  default     = ["10.2.0.0/16"]
+  default     = ["10.0.0.0/16"]
   description = "Address range for deployment VNet"
 }
-variable "subnet_range" {
+variable "subnet_range_sessionhosts" {
   type        = list(string)
-  default     = ["10.2.0.0/24"]
+  default     = ["10.0.1.0/24"]
   description = "Address range for session host subnet"
 }
 
-variable "prefix" {
-  type        = string
-  default     = "avdtf"
-  description = "Prefix of the name of the AVD machine(s)"
+variable "subnet_range_AzureFirewallSubnet" {
+  type        = list(string)
+  default     = ["10.0.250.0/24"]
+  description = "Address range for AzureFirewallSubnet"
 }
 
-
-
-####################### Compute Gallery #####################
-
-variable "deploy_location" {
-  type        = string
-  default     = "eastus"
-  description = "The Azure Region in which all resources in this example should be created."
+variable "subnet_range_aadds" {
+  type        = list(string)
+  default     = ["10.0.100.0/24"]
+  description = "Address range for Azure AD Domain Services"
 }
 
-variable "rg_shared_name" {
-  type        = string
-  default     = "rg-shared-resources"
-  description = "Name of the Resource group in which to deploy shared resources"
+variable "subnet_range_privateendpoints" {
+  type        = list(string)
+  default     = ["10.0.200.0/24"]
+  description = "Address range for PrivateEndpoints"
 }
 
+####################### Shared Components #########################
 
-###################### Log Analytics ##########################
-
-variable "deploy_location" {
+variable "resource_group_management_name" {
   type        = string
-  default     = "eastus"
-  description = "The Azure Region in which all resources in this example should be created."
-}
-
-variable "rg_shared_name" {
-  type        = string
-  default     = "rg-shared-resources"
-  description = "Name of the Resource group in which to deploy shared resources"
+  default     = "kpmg-avd-pxcube-mgmt-by-tf"
+  description = "Name of the Resource group in which to deploy management resources"
 }
